@@ -1,0 +1,145 @@
+1. Persona
+Nombre de la clase: Persona
+
+Atributos:
+- dni : String
+- nombre : String
+- fechaNacimiento : Date
+
+Métodos:
+- getEdad() : int
+
+Relaciones:
+- Herencia: Clase padre de Profesor y Estudiante
+- Asociación: Tiene una Direccion (composición/agregación)
+
+2. Profesor
+Nombre de la clase: Profesor
+
+Atributos:
+- salario : double
+
+Métodos:
+- asignarCurso(c : Curso) : void
+
+Relaciones:
+- Herencia: Hereda de Persona
+- Asociación: Relación con Curso (cursoDictados: 0..*)
+
+3. Estudiante
+Nombre de la clase: Estudiante
+
+Atributos:
+- repetidor : boolean
+
+Métodos:
+- inscribirse(c : Curso) : Matricula
+
+Relaciones:
+
+Herencia: Hereda de Persona
+
+Asociación: Relación con Curso a través de Matricula (inscripciones: 1..*)
+
+4. Curso
+a. Nombre de la clase: Curso
+b. Atributos:
+
+codigo : String
+
+nombre : String
+
+cupoMaximo : int
+
+c. Métodos:
+
+inscribir(e : Estudiante) : Matricula
+
+d. Relaciones:
+
+Asociación: Relación con Profesor (cursoDictados: 0..*)
+
+Asociación: Relación con Estudiante a través de Matricula (inscripciones: 0..*)
+
+Composición: Tiene Horarios
+
+5. Matricula
+a. Nombre de la clase: Matricula
+b. Atributos:
+
+(Atributos implícitos de la relación)
+
+c. Métodos:
+
+(Métodos implícitos de la relación)
+
+d. Relaciones:
+
+Asociación: Clase de asociación entre Estudiante y Curso
+
+Estudiante (1..) ↔ Matricula ↔ Curso (0..)
+
+6. Horario
+a. Nombre de la clase: Horario
+b. Atributos:
+
+diaSemana : String
+
+horaInicio : Time
+
+horaFin : Time
+
+c. Métodos:
+
+(Métodos básicos getters/setters)
+
+d. Relaciones:
+
+Composición: Pertenece a Curso
+
+7. Direccion
+a. Nombre de la clase: Direccion
+b. Atributos:
+
+calle : String
+
+numero : int
+
+ciudad : String
+
+c. Métodos:
+
+(Métodos básicos getters/setters)
+
+d. Relaciones:
+
+Composición/Agregación: Es parte de Persona
+
+8. Universidad
+a. Nombre de la clase: Universidad
+b. Atributos:
+
+nombre : String
+
+c. Métodos:
+
+(Métodos básicos getters/setters)
+
+d. Relaciones:
+
+Asociación: Relación con Departamento
+
+9. Departamento
+a. Nombre de la clase: Departamento
+b. Atributos:
+
+nombre : String
+
+c. Métodos:
+
+(Métodos básicos getters/setters)
+
+d. Relaciones:
+
+Asociación: Relación con Universidad
+
