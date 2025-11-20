@@ -39,37 +39,31 @@ Relaciones:
 
 Herencia: Hereda de Persona
 
-Asociación: Relación con Curso a través de Matricula (inscripciones: 1..*)
+- Asociación: Relación con Curso a través de Matricula (inscripciones: 1..*)
 
 4. Curso
-a. Nombre de la clase: Curso
-b. Atributos:
+Nombre de la clase: Curso
 
-codigo : String
+Atributos:
+- codigo : String
+- nombre : String
+- cupoMaximo : int
 
-nombre : String
+Métodos:
+- inscribir(e : Estudiante) : Matricula
 
-cupoMaximo : int
-
-c. Métodos:
-
-inscribir(e : Estudiante) : Matricula
-
-d. Relaciones:
-
-Asociación: Relación con Profesor (cursoDictados: 0..*)
-
-Asociación: Relación con Estudiante a través de Matricula (inscripciones: 0..*)
-
-Composición: Tiene Horarios
+Relaciones:
+- Asociación: Relación con Profesor (cursoDictados: 0..*)
+- Asociación: Relación con Estudiante a través de Matricula (inscripciones: 0..*)
+- Composición: Tiene Horarios
 
 5. Matricula
-a. Nombre de la clase: Matricula
-b. Atributos:
+Nombre de la clase: Matricula
 
-(Atributos implícitos de la relación)
+Atributos:
 
-c. Métodos:
+
+Métodos:
 
 (Métodos implícitos de la relación)
 
