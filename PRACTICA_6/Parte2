@@ -65,17 +65,15 @@ Atributos:
 
 Métodos:
 
-(Métodos implícitos de la relación)
-
-d. Relaciones:
+Relaciones:
 
 Asociación: Clase de asociación entre Estudiante y Curso
 
 Estudiante (1..) ↔ Matricula ↔ Curso (0..)
 
 6. Horario
-a. Nombre de la clase: Horario
-b. Atributos:
+Nombre de la clase: Horario
+Atributos:
 
 diaSemana : String
 
@@ -83,57 +81,48 @@ horaInicio : Time
 
 horaFin : Time
 
-c. Métodos:
-
+Métodos:
 (Métodos básicos getters/setters)
 
-d. Relaciones:
+Relaciones:
 
 Composición: Pertenece a Curso
 
 7. Direccion
-a. Nombre de la clase: Direccion
-b. Atributos:
-
+Nombre de la clase: Direccion
+Atributos:
 calle : String
 
 numero : int
 
 ciudad : String
 
-c. Métodos:
-
+Métodos:
 (Métodos básicos getters/setters)
 
-d. Relaciones:
-
+Relaciones:
 Composición/Agregación: Es parte de Persona
 
 8. Universidad
-a. Nombre de la clase: Universidad
-b. Atributos:
-
+Nombre de la clase: Universidad
+Atributos:
 nombre : String
 
-c. Métodos:
-
+Métodos:
 (Métodos básicos getters/setters)
 
-d. Relaciones:
-
+Relaciones:
 Asociación: Relación con Departamento
 
 9. Departamento
-a. Nombre de la clase: Departamento
-b. Atributos:
-
+Nombre de la clase: Departamento
+Atributos:
 nombre : String
 
-c. Métodos:
-
+Métodos:
 (Métodos básicos getters/setters)
 
-d. Relaciones:
+Relaciones:
 
 Asociación: Relación con Universidad
 
