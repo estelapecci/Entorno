@@ -1,114 +1,55 @@
 package PROYECTO;
 
-import java.util.Date;
-import java.sql.Time;
-
-/**
- * Clase principal para probar el sistema universitario
- * Con datos de gente de Cadiz
- */
-public class main {
+public class Main {
     public static void main(String[] args) {
         
-        System.out.println("SISTEMA UNIVERSITARIO DE CADIZ ");
-        System.out.println("Iniciando programa...\n");
+        System.out.println(" SISTEMA DE GESTIÓN DE PEDIDOS ");
         
-        // Crear una universidad de Cadiz
-        Universidad universidadCadiz = new Universidad("Universidad de Cadiz");
-        System.out.println("Universidad creada: " + universidadCadiz.getNombre());
+        // Crear clientes
+        Cliente cliente1 = new Cliente("Ana Garcia", "ana.garcia@email.com", "Calle Mayor 123, Cadiz");
+        Cliente cliente2 = new Cliente("Carlos Lopez", "carlos.lopez@email.com", "Avenida del Mar 45, Cadiz");
         
-        // Crear departamentos de la UCA
-        Departamento departamentoInformatica = new Departamento("Informatica");
-        Departamento departamentoMatematicas = new Departamento("Matematicas");
-        System.out.println("Departamentos creados: " + departamentoInformatica.getNombre() + " y " + departamentoMatematicas.getNombre());
+        System.out.println("Clientes creados correctamente");
         
-        // Crear direcciones de Cadiz
-        Direccion direccionProfesor = new Direccion("Avenida de la Universidad", 10, "Cadiz");
-        Direccion direccionEstudiante1 = new Direccion("Calle Ancha", 25, "Cadiz");
-        Direccion direccionEstudiante2 = new Direccion("Plaza de España", 8, "Puerto Real");
-        System.out.println("Direcciones creadas en Cadiz y Puerto Real");
+        // Crear productos físicos
+        ProductoFisico teclado = new ProductoFisico("Teclado Mecánico", 45.99, 4.99);
+        ProductoFisico monitor = new ProductoFisico("Monitor 24 pulgadas", 189.99, 12.50);
+        ProductoFisico raton = new ProductoFisico("Ratón Inalámbrico", 25.50, 3.99);
         
-        // Crear profesores de Cadiz
-        Date fechaNacProfesor = new Date(85, 4, 15); // 15 de mayo 1985
-        Profesor profesor1 = new Profesor("12345678A", "Juan Garcia Lopez", fechaNacProfesor, 35000.0);
+        // Crear productos digitales
+        ProductoDigital software = new ProductoDigital("Software Antivirus", 49.99, 250, "Licencia anual");
+        ProductoDigital ebook = new ProductoDigital("eBook Programación Java", 19.99, 15, "Licencia perpetua");
+        ProductoDigital curso = new ProductoDigital("Curso Online Python", 89.99, 0, "Acceso 1 año");
         
-        System.out.println("\nProfesor creado:");
-        System.out.println("- Nombre: " + profesor1.getNombre());
-        System.out.println("- DNI: " + profesor1.getDni());
-        System.out.println("- Salario: " + profesor1.getSalario() + " euros");
+        System.out.println("Productos creados correctamente");
         
-        // Crear estudiantes de Cadiz
-        Date fechaNacEstudiante1 = new Date(102, 7, 20); // 20 de agosto 2002
-        Date fechaNacEstudiante2 = new Date(101, 2, 10); // 10 de marzo 2001
+        // Crear pedidos
+        Pedido pedido1 = new Pedido(cliente1, "2025-01-15");
+        Pedido pedido2 = new Pedido(cliente2, "2025-01-16");
         
-        Estudiante estudiante1 = new Estudiante("87654321B", "Maria Sanchez Perez", fechaNacEstudiante1, false);
-        Estudiante estudiante2 = new Estudiante("11223344C", "Carlos Rodriguez Gomez", fechaNacEstudiante2, true);
+        // Agregar productos al pedido 1 (mezcla física y digital)
+        System.out.println("\n PROCESANDO PEDIDO 1 ");
+        pedido1.agregarProducto(teclado);
+        pedido1.agregarProducto(software);
+        pedido1.agregarProducto(ebook);
         
-        System.out.println("\nEstudiantes creados:");
-        System.out.println("- " + estudiante1.getNombre() + " (Repetidor: " + estudiante1.isRepetidor() + ")");
-        System.out.println("- " + estudiante2.getNombre() + " (Repetidor: " + estudiante2.isRepetidor() + ")");
+        // Agregar productos al pedido 2 (solo productos físicos)
+        System.out.println("\nPROCESANDO PEDIDO 2");
+        pedido2.agregarProducto(monitor);
+        pedido2.agregarProducto(raton);
+        pedido2.agregarProducto(curso);
         
-        // Crear cursos tipicos de informatica
-        Curso cursoProgramacion = new Curso("PROG-101", "Programacion en Java", 30);
-        Curso cursoBasesDatos = new Curso("BD-201", "Bases de Datos SQL", 25);
-        Curso cursoWeb = new Curso("WEB-301", "Desarrollo Web", 20);
+        // Mostrar resúmenes de los pedidos
+        pedido1.mostrarResumen();
+        pedido2.mostrarResumen();
         
-        System.out.println("\nCursos creados:");
-        System.out.println("- " + cursoProgramacion.getNombre() + " (Codigo: " + cursoProgramacion.getCodigo() + ")");
-        System.out.println("- " + cursoBasesDatos.getNombre() + " (Codigo: " + cursoBasesDatos.getCodigo() + ")");
-        System.out.println("- " + cursoWeb.getNombre() + " (Codigo: " + cursoWeb.getCodigo() + ")");
+        // Mostrar información adicional
+        System.out.println(" INFORMACIÓN ADICIONAL ");
+        System.out.println("Total pedido 1: " + pedido1.calcularTotal() + "€");
+        System.out.println("Total pedido 2: " + pedido2.calcularTotal() + "€");
+        System.out.println("Número de productos en pedido 1: " + pedido1.getProductos().size());
+        System.out.println("Número de productos en pedido 2: " + pedido2.getProductos().size());
         
-        // Crear horarios
-        Time horaInicioManana = Time.valueOf("09:00:00");
-        Time horaFinManana = Time.valueOf("11:00:00");
-        Time horaInicioTarde = Time.valueOf("16:00:00");
-        Time horaFinTarde = Time.valueOf("18:00:00");
-        
-        Horario horarioLunesManana = new Horario("Lunes", horaInicioManana, horaFinManana);
-        Horario horarioMiercolesTarde = new Horario("Miercoles", horaInicioTarde, horaFinTarde);
-        
-        System.out.println("\nHorarios creados:");
-        System.out.println("- " + horarioLunesManana.getDiaSemana() + " de " + horarioLunesManana.getHoraInicio() + " a " + horarioLunesManana.getHoraFin());
-        System.out.println("- " + horarioMiercolesTarde.getDiaSemana() + " de " + horarioMiercolesTarde.getHoraInicio() + " a " + horarioMiercolesTarde.getHoraFin());
-        
-        // Simular operaciones del sistema
-        System.out.println("\n OPERACIONES DEL SISTEMA ");
-        
-        // Profesor asigna cursos
-        profesor1.asignarCurso(cursoProgramacion);
-        profesor1.asignarCurso(cursoBasesDatos);
-        System.out.println("El profesor " + profesor1.getNombre() + " ha asignado los cursos: " + cursoProgramacion.getNombre() + " y " + cursoBasesDatos.getNombre());
-        
-        // Estudiantes se inscriben en cursos
-        Matricula matricula1 = estudiante1.inscribirse(cursoProgramacion);
-        Matricula matricula2 = estudiante1.inscribirse(cursoWeb);
-        Matricula matricula3 = estudiante2.inscribirse(cursoBasesDatos);
-        
-        System.out.println("La estudiante " + estudiante1.getNombre() + " se ha inscrito en " + cursoProgramacion.getNombre() + " y " + cursoWeb.getNombre());
-        System.out.println("El estudiante " + estudiante2.getNombre() + " se ha inscrito en " + cursoBasesDatos.getNombre());
-        
-        // Cursos inscriben estudiantes
-        Matricula matricula4 = cursoProgramacion.inscribir(estudiante1);
-        Matricula matricula5 = cursoBasesDatos.inscribir(estudiante2);
-        
-        System.out.println("El curso " + cursoProgramacion.getNombre() + " ha inscrito a: " + estudiante1.getNombre());
-        System.out.println("El curso " + cursoBasesDatos.getNombre() + " ha inscrito a: " + estudiante2.getNombre());
-        
-        // Mostrar informacion de edades
-        System.out.println("\n INFORMACION DE EDADES ");
-        System.out.println("Edad del profesor " + profesor1.getNombre() + ": " + profesor1.getEdad() + " años");
-        System.out.println("Edad de la estudiante " + estudiante1.getNombre() + ": " + estudiante1.getEdad() + " años");
-        System.out.println("Edad del estudiante " + estudiante2.getNombre() + ": " + estudiante2.getEdad() + " años");
-        
-        // Mostrar resumen final
-        System.out.println("\n RESUMEN DEL SISTEMA ");
-        System.out.println("Universidad: " + universidadCadiz.getNombre());
-        System.out.println("Profesores: 1");
-        System.out.println("Estudiantes: 2");
-        System.out.println("Cursos activos: 3");
-        System.out.println("Matriculas realizadas: 5");
-        
-        System.out.println("\n=== PROGRAMA FINALIZADO ===");
-        System.out.println("Sistema universitario de Cadiz funcionando correctamente");
+        System.out.println("\n=== SISTEMA FINALIZADO ===");
     }
 }
