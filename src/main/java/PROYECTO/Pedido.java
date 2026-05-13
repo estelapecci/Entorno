@@ -43,7 +43,17 @@ public class Pedido {
         return total;
     }
 
-    public Cliente getCliente() { return cliente; }
+    public Cliente getCliente() { 
+        return cliente; 
+    }
+
+    public List<Producto> getProductos() { 
+        return productos; 
+    }
+
+    public List<Integer> getCantidades() { 
+        return cantidades; 
+    }
 
     @Override
     public String toString() {
