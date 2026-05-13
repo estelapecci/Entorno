@@ -1,48 +1,38 @@
 package PROYECTO;
 
-/**
- * Clase para representar a un cliente
- */
 public class Cliente {
+
+    private int id;
     private String nombre;
     private String correo;
     private String direccion;
-    
-    // Constructor
-    public Cliente(String nombre, String correo, String direccion) {
+    private int anosAntiguedad;
+    private boolean esVip;
+    private String pais;
+
+    private static int contadorIds = 1;
+
+    public Cliente(String nombre, String correo, String direccion,
+                   int anosAntiguedad, boolean esVip, String pais) {
+
+        this.id = contadorIds++;
         this.nombre = nombre;
         this.correo = correo;
         this.direccion = direccion;
+        this.anosAntiguedad = anosAntiguedad;
+        this.esVip = esVip;
+        this.pais = pais;
     }
-    
-    // Getters y Setters
-    public String getNombre() {
-        return nombre;
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public String getCorreo() {
-        return correo;
-    }
-    
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-    
-    public String getDireccion() {
-        return direccion;
-    }
-    
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    
-    // Método toString
+
+    public int getId() { return id; }
+    public String getPais() { return pais; }
+    public boolean getEsVip() { return esVip; }
+    public int getAnosAntiguedad() { return anosAntiguedad; }
+
     @Override
     public String toString() {
-        return "Cliente: " + nombre + " - Email: " + correo + " - Dirección: " + direccion;
+        return "Cliente{id=" + id + ", nombre='" + nombre +
+                "', pais=" + pais + ", vip=" + esVip +
+                ", años=" + anosAntiguedad + "}";
     }
 }

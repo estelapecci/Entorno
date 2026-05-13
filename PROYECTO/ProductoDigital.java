@@ -1,47 +1,38 @@
 package PROYECTO;
-/**
- * Clase para productos digitales (hereda de Producto)
- * No tiene coste de envío pero tiene IVA
- */
+
 public class ProductoDigital extends Producto {
-    private double tamanoDescarga; // en MB
+
+    private double tamanoDescarga;
     private String licencia;
-    
-    // Constructor
-    public ProductoDigital(String nombre, double precio, double tamanoDescarga, String licencia) {
-        super(nombre, precio);
+    private String tipoIVA; // GENERAL, REDUCIDO, SUPER
+
+    public ProductoDigital(String nombre, double precioBase, double tamanoDescarga, String licencia, String tipoIVA) {
+        super(nombre, precioBase);
         this.tamanoDescarga = tamanoDescarga;
         this.licencia = licencia;
+        this.tipoIVA = tipoIVA;
     }
-    
-    // Implementación del método abstracto
+
+    public double aplicarIVA(String tipo) {
+        switch (tipo.toUpperCase()) {
+            case "GENERAL": return precioBase * 0.21;
+            case "REDUCIDO": return precioBase * 0.10;
+            case "SUPER": return precioBase * 0.04;
+            default: throw new IllegalArgumentException("Tipo de IVA inválido");
+        }
+    }
+
     @Override
-    public double calcularPrecioFinal() {
-        // Productos digitales tienen IVA del 21%
-        double iva = precio * 0.21;
-        return precio + iva;
+    public double calcularPrecioFinal(String paisCliente) {
+        return precioBase + aplicarIVA(tipoIVA);
     }
-    
-    // Getters y Setters específicos
-    public double getTamanoDescarga() {
-        return tamanoDescarga;
-    }
-    
-    public void setTamanoDescarga(double tamanoDescarga) {
-        this.tamanoDescarga = tamanoDescarga;
-    }
-    
-    public String getLicencia() {
-        return licencia;
-    }
-    
-    public void setLicencia(String licencia) {
-        this.licencia = licencia;
-    }
-    
-    // Método toString mejorado
+
     @Override
     public String toString() {
-        return super.toString() + " - Tamaño: " + tamanoDescarga + "MB - Licencia: " + licencia + " - Total con IVA: " + calcularPrecioFinal() + "€";
+        return super.toString() +
+               " | Digital -> Tamaño: " + tamanoDescarga +
+               "MB | Licencia: " + licencia +
+               " | IVA: " + tipoIVA +
+               " | Total: " + calcularPrecioFinal(null) + "€";
     }
 }

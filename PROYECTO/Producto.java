@@ -1,42 +1,46 @@
 package PROYECTO;
 
-/**
- * Clase abstracta Producto - clase padre para todos los productos
- */
 public abstract class Producto {
-    // Atributos protegidos (accesibles por las subclases)
+
+    protected int id;
     protected String nombre;
-    protected double precio;
-    
-    // Constructor
-    public Producto(String nombre, double precio) {
+    protected double precioBase;
+
+    private static int contadorIds = 1;
+
+    public Producto(String nombre, double precioBase) {
+        if (precioBase < 0) {
+            throw new IllegalArgumentException("El precio no puede ser negativo");
+        }
+
+        this.id = contadorIds++;
         this.nombre = nombre;
-        this.precio = precio;
+        this.precioBase = precioBase;
     }
-    
-    // Método abstracto que deben implementar las subclases
-    public abstract double calcularPrecioFinal();
-    
-    // Getters y Setters
+
+    public int getId() {
+        return id;
+    }
+
     public String getNombre() {
         return nombre;
     }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+    public double getPrecioBase() {
+        return precioBase;
     }
-    
-    public double getPrecio() {
-        return precio;
+
+    public void setPrecioBase(double precioBase) {
+        if (precioBase < 0) {
+            throw new IllegalArgumentException("El precio no puede ser negativo");
+        }
+        this.precioBase = precioBase;
     }
-    
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-    
-    // Método toString para mostrar información
+
+    public abstract double calcularPrecioFinal(String paisCliente);
+
     @Override
     public String toString() {
-        return nombre + " - Precio base: " + precio + "€";
+        return "Producto{id=" + id + ", nombre='" + nombre + "', precioBase=" + precioBase + "€}";
     }
 }
