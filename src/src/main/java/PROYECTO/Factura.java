@@ -17,7 +17,15 @@ public class Factura {
     private double totalFinal;
 
     private static int contadorFacturas = 1;
-
+/**
+     * Crea una nueva factura asociada a un cliente y un pedido.
+     *
+     * @param cliente     el cliente al que se emite la factura
+     * @param pedido      el pedido que origina la factura
+     * @param totalNeto   el subtotal ya descontado, sin IVA ni envíos (en euros)
+     * @param totalIva    el importe total de IVA de los productos digitales (en euros)
+     * @param totalEnvio  el importe total de los costes de envío (en euros)
+     */
     public Factura(Cliente cliente, Pedido pedido,
                    double totalNeto, double totalIva, double totalEnvio) {
 

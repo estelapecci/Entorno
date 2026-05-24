@@ -5,6 +5,11 @@ public class Tienda {
     /**
      * Método principal: orquesta la venta completa.
      * Recibe: cliente + pedido ya preparado.
+     * @param cliente el cliente que realiza la compra; no puede ser {@code null}
+     * @param pedido  el pedido con los productos seleccionados; no puede ser {@code null} ni estar vacío
+     * @return una {@link Factura} con el desglose completo de la venta
+     * @throws IllegalArgumentException si {@code cliente} o {@code pedido} son {@code null}
+     * @throws IllegalStateException    si el pedido no contiene ningún producto
      */
     public Factura realizarVenta(Cliente cliente, Pedido pedido) {
 
@@ -33,6 +38,9 @@ public class Tienda {
 
     /**
      * Descuento según antigüedad y si es VIP.
+     *  @param c    el cliente sobre el que se evalúan las condiciones de fidelidad
+     * @param base el importe bruto del pedido antes de aplicar descuentos
+     * @return el importe monetario del descuento (puede ser 0 si no aplica ninguno)
      */
     private double calcularDescuento(Cliente c, double base) {
         double descuento = 0;
@@ -45,7 +53,10 @@ public class Tienda {
 
     /**
      * Calcula el IVA total sumando el IVA individual de cada producto digital.
-     */
+    * @param p el pedido que contiene la lista de productos y cantidades
+     * @param c el cliente cuyo país puede influir en el cálculo del precio final
+     * @return el importe total de IVA correspondiente a los productos digitales 
+    */
     private double calcularIVATotal(Pedido p, Cliente c) {
         double ivaTotal = 0;
 
@@ -68,7 +79,10 @@ public class Tienda {
 
     /**
      * Calcula el coste de envío sumando el envío de cada producto físico.
-     */
+    * @param p el pedido que contiene la lista de productos y cantidades
+     * @param c el cliente cuyo país determina la tarifa de envío aplicable
+     * @return el importe total de envío correspondiente a los productos físicos
+    */
     private double calcularEnvioTotal(Pedido p, Cliente c) {
         double envioTotal = 0;
 
